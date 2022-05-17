@@ -36,6 +36,18 @@ nano /etc/xdg/weston/weston.ini
 В последней секции [output] меняем значение mode на 1280x720, т.е. должна получиться строка:
 mode=1280x720
 
+Выходим из редактора: Ctrl+X
 
+## SSH
+
+Таким же образом надо отредактировать настройки ssh: 
+
+nano /etc/ssh/sshd_config
+
+Ищем строку: EnablePasswordAuthentication no
+
+И меняем её на: EnablePasswordAuthentication yes
+
+Выходим из редактора: Ctrl+X
 
 
