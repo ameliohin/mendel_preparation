@@ -62,6 +62,7 @@ Test it by manually trying the ssh command and make sure the reverse tunnel is w
 
 vi /etc/systemd/system/tunnel.service
 
+```
 [Unit]
 Description=Maintain Tunnel
 After=network.target
@@ -75,11 +76,13 @@ KillMode=mixed
 
 [Install]
 WantedBy=multi-user.target
+```
 
 Then run:
 
+```
 sudo systemctl daemon-reload
 sudo systemctl enable tunnel
 sudo systemctl start tunnel
-
+```
 
