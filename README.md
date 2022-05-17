@@ -6,8 +6,8 @@
 - установку ОС
 - редактирование конфигурации дисплея и тачскрина weston
 - редактирование конфигурации SSH (после чего можно производить работы удаленно)
-- установку необходимых пакетов
 - установку и настройку сервиса ssh туннеля для доступа к плате извне
+- установку необходимых пакетов
 - заливку свежей версии ПО
 
 ## Установка ОС Mendel Linux
@@ -49,5 +49,37 @@ nano /etc/ssh/sshd_config
 И меняем её на: EnablePasswordAuthentication yes
 
 Выходим из редактора: Ctrl+X
+
+# SSH Tunnel Service
+
+https://askubuntu.com/questions/1316798/establishing-persistent-autossh-reverse-ssh-tunnel
+
+Create the tunnel private/public key using ssh-keygen on the remote machine. You will be prompted for a passphrase. You can press Enter to ignore the passphrase questions, but this is not recommended. It would mean that anyone on the remote computer could make an SSH connection to your local computer without being challenged for a password (see the "Using SSH With Keys" section).
+
+Install the public key in your remote user@remote.hosts .ssh/authorized_keys file
+
+Test it by manually trying the ssh command and make sure the reverse tunnel is working.
+
+vi /etc/systemd/system/tunnel.service
+
+[Unit]
+Description=Maintain Tunnel
+After=network.target
+
+[Service]
+User=localuser
+ExecStart=/usr/bin/ssh -i ~localuser/.ssh/tunnel -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -gnNT -R 22222:localhost:22 remoteuser@remotehost vmstat 5
+RestartSec=15
+Restart=always
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target
+
+Then run:
+
+sudo systemctl daemon-reload
+sudo systemctl enable tunnel
+sudo systemctl start tunnel
 
 
