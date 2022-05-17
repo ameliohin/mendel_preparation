@@ -50,7 +50,7 @@ nano /etc/ssh/sshd_config
 
 Выходим из редактора: Ctrl+X
 
-# SSH Tunnel Service
+## SSH Tunnel Service
 
 https://askubuntu.com/questions/1316798/establishing-persistent-autossh-reverse-ssh-tunnel
 
