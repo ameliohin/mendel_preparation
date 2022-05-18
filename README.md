@@ -70,7 +70,7 @@ After=network.target
 [Service]
 User=localuser
 ExecStart=/usr/bin/ssh -i ~localuser/.ssh/tunnel -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -gnNT -R 22222:localhost:22 remoteuser@remotehost vmstat 5
-RestartSec=15
+RestartSec=30
 Restart=always
 KillMode=mixed
 
