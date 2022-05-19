@@ -86,3 +86,13 @@ sudo systemctl enable tunnel
 sudo systemctl start tunnel
 ```
 
+## Pyside2 library installation
+sudo apt install:
+
+python3-pyside2.qtgui
+python3-pyside2.qtwidgets
+python3-pyside2.qtcore
+
+TODO: add to requirements qimage2ndarray
+
+before pip3 install opencv: sudo apt install cmake
